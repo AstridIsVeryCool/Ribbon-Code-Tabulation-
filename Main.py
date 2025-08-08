@@ -24,9 +24,8 @@ def order_values(max_value, number_of_elements):
     return working_value_matrix
 
 
-#removes cofrd that are mirrored versions of another code (leaving one of the two mirrored versions ofc)
-#WARNING!!!!! ONLY WORKS WITH CODES WITH ONE EDGE AS OF 7/7/25
-#to do: generalize this to all ribbon codes
+#removes cofrd that are mirrored versions of another list of ordered values (leaving one of the two mirrored versions ofc)
+#note: does not detect equivalent ribbon codes (work still needs to be done there)
 def remove_duplicates(matrix):
     seen = set()
     unique = []
