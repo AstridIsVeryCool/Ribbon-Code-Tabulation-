@@ -7,7 +7,7 @@
 - [] add a way to detect and filter out reducible codes
     - [x] add remove codes with consecutive identical markings
     - [] add a function to detect disconnected graphs
-    - [] add a function to get the valence of a vertex
+    - [x] add a function to get the valence of a vertex
     - [] add a function that applies rule 1
     - [] add a function that applies rule 2 
     - [] add a function that applies rule 3

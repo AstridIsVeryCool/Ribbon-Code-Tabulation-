@@ -48,14 +48,25 @@ def generate_codes_within_family(matrix, template):
     ribbon_codes = []
     for i in matrix:
         temp_code = copy.deepcopy(template)
-        temp_code[0][0] = i[:]
+        temp_code[0][1] = i[:]
         ribbon_codes.append(temp_code[:])
     print(len(ribbon_codes))
     return ribbon_codes
 
-def get_valence():
-    pass
-    #to do
+#gets valence of a vertex (vertex_id) in a ribbon code(code)
+def get_valence(vertex_id, code):
+    valence = 0
+    for i in range(len(code)):
+        if i != vertex_id and isinstance(code[i][vertex_id],list):
+            valence += 1
+    for i in code[vertex_id]:
+        if isinstance(i,list):
+            valence += 1
+    return valence
+            
+
+    
+    
 
 #applies rule 5( and also 6) from Bounds, Jones determinants, irreducible codes to a list of ribbon codes to remove reducible codes
 def apply_rule_5(code_list):
@@ -95,7 +106,7 @@ def apply_rule_5(code_list):
 def remove_reducible_codes(code_list):
     working_list = apply_rule_5(code_list)
     
-four_vertex_template = [[[],0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+four_vertex_template = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 
 x = order_values(3, 4)
 x = remove_duplicates(x)
@@ -106,5 +117,5 @@ print(code_list)
 for i in range(10):
     print()
 
-print(apply_rule_5(code_list))
+print("valence:",get_valence(1,four_vertex_template))
 
