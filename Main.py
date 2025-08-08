@@ -26,6 +26,7 @@ def order_values(max_value, number_of_elements):
 
 #removes cofrd that are mirrored versions of another code (leaving one of the two mirrored versions ofc)
 #WARNING!!!!! ONLY WORKS WITH CODES WITH ONE EDGE AS OF 7/7/25
+#to do: generalize this to all ribbon codes
 def remove_duplicates(matrix):
     seen = set()
     unique = []
@@ -89,9 +90,6 @@ def apply_rule_5(code_list):
     return filtered_code_list
 
                         
-                    
-
-
 #applies reduction rules to remove reducible codes
 #Not finished as of 7/7/35
 def remove_reducible_codes(code_list):
