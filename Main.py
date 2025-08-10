@@ -1,4 +1,12 @@
 import copy
+import json
+
+
+
+def save_codes_to_file(code_list, filename="code_output.json"):
+    with open(filename, "w") as f:
+        json.dump(code_list, f, indent=2)
+
 
 #generates a list of all ways to order numbers up to max_value with number_of_elements slots
 def order_values(max_value, number_of_elements):
@@ -39,7 +47,6 @@ def remove_duplicates(matrix):
             seen.add(t_rev)
     return unique
 
-
 #generates all codes that fit a certain template
 #WARNING!!!!!!! ONLY WORKS WITH CODES WITH ONE EDGE AS OF 7/7/25
 #To do: generalize to other code types
@@ -63,10 +70,6 @@ def get_valence(vertex_id, code):
             valence += 1
     return valence
             
-
-    
-    
-
 #applies rule 5( and also 6) from Bounds, Jones determinants, irreducible codes to a list of ribbon codes to remove reducible codes
 def apply_rule_5(code_list):
     filtered_code_list = []
@@ -104,6 +107,7 @@ def apply_rule_5(code_list):
 #Not finished as of 7/7/35
 def remove_reducible_codes(code_list):
     working_list = apply_rule_5(code_list)
+    return working_list
     
 four_vertex_template = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 
@@ -111,6 +115,8 @@ x = order_values(3, 4)
 x = remove_duplicates(x)
 
 code_list = generate_codes_within_family(x,four_vertex_template)
+code_list = remove_reducible_codes(code_list)
+
 
 print(code_list)
 for i in range(10):
@@ -118,3 +124,7 @@ for i in range(10):
 
 print("valence:",get_valence(1,four_vertex_template))
 
+# Save to file
+save_codes_to_file(code_list, "filtered_codes.json")
+
+print(f"Saved {len(code_list)} codes to 'filtered_codes.json'")
